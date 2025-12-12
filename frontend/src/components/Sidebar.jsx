@@ -1,34 +1,18 @@
-import { useState } from "react";
-import {
-  LayoutDashboard,
-  Package,
-  ShoppingCart,
-  TrendingUp,
-  Users,
-  Settings,
-  FileText,
-  Bell,
-  Search,
-  ChevronDown,
-  BarChart3,
-  Warehouse,
-  FolderTree,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+import { LayoutDashboard, Package, FolderTree, Truck } from "lucide-react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const [activeItem, setActiveItem] = useState("dashboard");
-
   const menuItems = [
     { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/" },
+    { id: "products", icon: Package, label: "Products", path: "/products" },
     {
-      id: "products",
-      icon: Package,
-      label: "Products",
-      path: "/products",
+      id: "categories",
+      icon: FolderTree,
+      label: "Categories",
+      path: "/categories",
     },
-    { id: "categories", icon: FolderTree, label: "Categories", path: "/categories" },
-    { id: "suppliers", icon: Users, label: "Suppliers", path: "/suppliers" },
+    { id: "suppliers", icon: Truck, label: "Suppliers", path: "/suppliers" },
   ];
 
   return (
@@ -48,25 +32,28 @@ const Sidebar = () => {
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-4">
+          Navigation
+        </p>
         <ul className="space-y-1">
           {menuItems.map((item) => (
-            <Link key={item.id} to={item.path}>
-              <button
-                onClick={() => {
-                  setActiveItem(item.id);
-                }}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
-                  activeItem === item.id
-                    ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md"
-                    : "text-gray-700 hover:bg-gray-50"
-                }`}
+            <li key={item.id}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md"
+                      : "text-gray-700 hover:bg-gray-50"
+                  }`
+                }
               >
                 <div className="flex items-center gap-3">
                   <item.icon size={20} />
                   <span className="font-medium text-sm">{item.label}</span>
                 </div>
-              </button>
-            </Link>
+              </NavLink>
+            </li>
           ))}
         </ul>
       </nav>

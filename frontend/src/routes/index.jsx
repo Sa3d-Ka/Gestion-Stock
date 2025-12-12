@@ -7,6 +7,7 @@ import Layout from "../layout/layout";
 import Home from "../pages/Home";
 import Products from "../pages/Products";
 import Categories from "../pages/Categories";
+import Suppliers from "../pages/Suppliers";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path: "/categories",
                 element: <Categories />
+            },
+            {
+                path: "/suppliers",
+                element: <Suppliers />
             }
         ]
     }

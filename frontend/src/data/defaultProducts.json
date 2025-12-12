@@ -1,0 +1,302 @@
+[
+  {
+    "id": "1",
+    "name": "Laptop",
+    "sku": "LP001",
+    "categoryId": "cat1",
+    "supplierId": "sup1",
+    "price": 999.99,
+    "stock": 10,
+    "minStock": 5
+  },
+  {
+    "id": "2",
+    "name": "Office Chair",
+    "sku": "OC001",
+    "categoryId": "cat2",
+    "supplierId": "sup2",
+    "price": 299.99,
+    "stock": 15,
+    "minStock": 3
+  },
+  {
+    "id": "3",
+    "name": "Notebook",
+    "sku": "NB001",
+    "categoryId": "cat3",
+    "supplierId": "sup3",
+    "price": 4.99,
+    "stock": 50,
+    "minStock": 20
+  },
+  {
+    "id": "4",
+    "name": "Smartphone",
+    "sku": "SP001",
+    "categoryId": "cat1",
+    "supplierId": "sup1",
+    "price": 699.99,
+    "stock": 25,
+    "minStock": 10
+  },
+  {
+    "id": "5",
+    "name": "Monitor",
+    "sku": "MN001",
+    "categoryId": "cat1",
+    "supplierId": "sup2",
+    "price": 199.99,
+    "stock": 20,
+    "minStock": 5
+  },
+  {
+    "id": "6",
+    "name": "Keyboard",
+    "sku": "KB001",
+    "categoryId": "cat1",
+    "supplierId": "sup3",
+    "price": 49.99,
+    "stock": 35,
+    "minStock": 10
+  },
+  {
+    "id": "7",
+    "name": "Mouse",
+    "sku": "MS001",
+    "categoryId": "cat1",
+    "supplierId": "sup3",
+    "price": 29.99,
+    "stock": 40,
+    "minStock": 10
+  },
+  {
+    "id": "8",
+    "name": "Desk",
+    "sku": "DS001",
+    "categoryId": "cat2",
+    "supplierId": "sup2",
+    "price": 399.99,
+    "stock": 7,
+    "minStock": 2
+  },
+  {
+    "id": "9",
+    "name": "Pen",
+    "sku": "PN001",
+    "categoryId": "cat3",
+    "supplierId": "sup4",
+    "price": 0.99,
+    "stock": 200,
+    "minStock": 50
+  },
+  {
+    "id": "10",
+    "name": "Printer",
+    "sku": "PR001",
+    "categoryId": "cat1",
+    "supplierId": "sup5",
+    "price": 149.99,
+    "stock": 8,
+    "minStock": 2
+  },
+  {
+    "id": "11",
+    "name": "Coffee Maker",
+    "sku": "CM001",
+    "categoryId": "cat4",
+    "supplierId": "sup6",
+    "price": 89.99,
+    "stock": 12,
+    "minStock": 3
+  },
+  {
+    "id": "12",
+    "name": "Blender",
+    "sku": "BL001",
+    "categoryId": "cat4",
+    "supplierId": "sup6",
+    "price": 59.99,
+    "stock": 18,
+    "minStock": 4
+  },
+  {
+    "id": "13",
+    "name": "Cutting Board",
+    "sku": "CB001",
+    "categoryId": "cat4",
+    "supplierId": "sup4",
+    "price": 14.99,
+    "stock": 30,
+    "minStock": 10
+  },
+  {
+    "id": "14",
+    "name": "Stapler",
+    "sku": "ST001",
+    "categoryId": "cat3",
+    "supplierId": "sup3",
+    "price": 6.99,
+    "stock": 60,
+    "minStock": 15
+  },
+  {
+    "id": "15",
+    "name": "Filing Cabinet",
+    "sku": "FC001",
+    "categoryId": "cat2",
+    "supplierId": "sup2",
+    "price": 249.99,
+    "stock": 5,
+    "minStock": 1
+  },
+  {
+    "id": "16",
+    "name": "Router",
+    "sku": "RT001",
+    "categoryId": "cat1",
+    "supplierId": "sup5",
+    "price": 129.99,
+    "stock": 14,
+    "minStock": 4
+  },
+  {
+    "id": "17",
+    "name": "USB Drive",
+    "sku": "UD001",
+    "categoryId": "cat1",
+    "supplierId": "sup3",
+    "price": 19.99,
+    "stock": 100,
+    "minStock": 20
+  },
+  {
+    "id": "18",
+    "name": "Sticky Notes",
+    "sku": "SN001",
+    "categoryId": "cat3",
+    "supplierId": "sup4",
+    "price": 2.49,
+    "stock": 150,
+    "minStock": 50
+  },
+  {
+    "id": "19",
+    "name": "Water Bottle",
+    "sku": "WB001",
+    "categoryId": "cat4",
+    "supplierId": "sup6",
+    "price": 12.99,
+    "stock": 80,
+    "minStock": 20
+  },
+  {
+    "id": "20",
+    "name": "Office Lamp",
+    "sku": "OL001",
+    "categoryId": "cat2",
+    "supplierId": "sup2",
+    "price": 39.99,
+    "stock": 22,
+    "minStock": 5
+  },
+  {
+    "id": "21",
+    "name": "Headphones",
+    "sku": "HP001",
+    "categoryId": "cat1",
+    "supplierId": "sup5",
+    "price": 89.99,
+    "stock": 16,
+    "minStock": 5
+  },
+  {
+    "id": "22",
+    "name": "Whiteboard",
+    "sku": "WB002",
+    "categoryId": "cat3",
+    "supplierId": "sup4",
+    "price": 59.99,
+    "stock": 10,
+    "minStock": 2
+  },
+  {
+    "id": "23",
+    "name": "Knife Set",
+    "sku": "KS001",
+    "categoryId": "cat4",
+    "supplierId": "sup6",
+    "price": 79.99,
+    "stock": 9,
+    "minStock": 2
+  },
+  {
+    "id": "24",
+    "name": "Paper Ream",
+    "sku": "PR002",
+    "categoryId": "cat3",
+    "supplierId": "sup4",
+    "price": 6.49,
+    "stock": 120,
+    "minStock": 40
+  },
+  {
+    "id": "25",
+    "name": "Desk Mat",
+    "sku": "DM001",
+    "categoryId": "cat2",
+    "supplierId": "sup2",
+    "price": 24.99,
+    "stock": 30,
+    "minStock": 10
+  },
+  {
+    "id": "26",
+    "name": "Projector",
+    "sku": "PJ001",
+    "categoryId": "cat1",
+    "supplierId": "sup5",
+    "price": 499.99,
+    "stock": 4,
+    "minStock": 1
+  },
+  {
+    "id": "27",
+    "name": "Mouse Pad",
+    "sku": "MP001",
+    "categoryId": "cat1",
+    "supplierId": "sup3",
+    "price": 9.99,
+    "stock": 70,
+    "minStock": 15
+  },
+  {
+    "id": "28",
+    "name": "Scissors",
+    "sku": "SC001",
+    "categoryId": "cat3",
+    "supplierId": "sup4",
+    "price": 3.99,
+    "stock": 90,
+    "minStock": 30
+  },
+  {
+    "id": "29",
+    "name": "Dishwasher",
+    "sku": "DW001",
+    "categoryId": "cat4",
+    "supplierId": "sup6",
+    "price": 699.99,
+    "stock": 2,
+    "minStock": 1
+  },
+  {
+    "id": "30",
+    "name": "External HDD",
+    "sku": "EH001",
+    "categoryId": "cat1",
+    "supplierId": "sup5",
+    "price": 119.99,
+    "stock": 11,
+    "minStock": 3
+  }
+]

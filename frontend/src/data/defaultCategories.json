@@ -1,0 +1,26 @@
+[
+  {
+    "id": "cat1",
+    "name": "Electronics",
+    "description": "Computers, phones, and gadgets",
+    "color": "indigo"
+  },
+  {
+    "id": "cat2",
+    "name": "Furniture",
+    "description": "Office chairs, desks, and tables",
+    "color": "emerald"
+  },
+  {
+    "id": "cat3",
+    "name": "Stationery",
+    "description": "Pens, paper, and office supplies",
+    "color": "rose"
+  },
+  {
+    "id": "cat4",
+    "name": "Kitchen",
+    "description": "Utensils, appliances, and cookware",
+    "color": "amber"
+  }
+]
