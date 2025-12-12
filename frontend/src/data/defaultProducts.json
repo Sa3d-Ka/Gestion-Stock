@@ -6,7 +6,7 @@
     "categoryId": "cat1",
     "supplierId": "sup1",
     "price": 999.99,
-    "stock": 10,
+    "stock": 4,
     "minStock": 5
   },
   {
@@ -16,7 +16,7 @@
     "categoryId": "cat2",
     "supplierId": "sup2",
     "price": 299.99,
-    "stock": 15,
+    "stock": 2,
     "minStock": 3
   },
   {
@@ -56,7 +56,7 @@
     "categoryId": "cat1",
     "supplierId": "sup3",
     "price": 49.99,
-    "stock": 35,
+    "stock": 2,
     "minStock": 10
   },
   {
