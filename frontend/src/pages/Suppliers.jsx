@@ -1,6 +1,6 @@
 // pages/Suppliers.jsx
 import React from "react";
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../components/common/PageTitle";
 import { useSuppliers } from "../context/SupplierContext";
 import { useProducts } from "../context/ProductContext";
 import { Pencil, Plus, Trash } from "lucide-react";
@@ -12,7 +12,7 @@ import {
   TableHead,
   TableCell,
   TableEmpty
-} from "../components/MyTable";
+} from "../components/common/MyTable";
 
 const Suppliers = () => {
   const { suppliers, deleteSupplier } = useSuppliers();

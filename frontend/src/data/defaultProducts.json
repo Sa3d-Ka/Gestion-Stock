@@ -3,6 +3,7 @@
     "id": "1",
     "name": "Laptop",
     "sku": "LP001",
+    "imageUrl": "../assets/images/laptop.png",
     "categoryId": "cat1",
     "supplierId": "sup1",
     "price": 999.99,

@@ -1,7 +1,7 @@
 import React from "react";
 import { BoxIcon, FolderTree, Pencil, Trash } from "lucide-react";
 
-const CategorieCard = ({ categorieInfo, products }) => {
+const CategoryCard = ({ categorieInfo, products }) => {
 
   const productCount = products.filter(
     (product) => product.categoryId === categorieInfo.id
@@ -86,4 +86,4 @@ const CategorieCard = ({ categorieInfo, products }) => {
   );
 };
 
-export default CategorieCard;
+export default CategoryCard;

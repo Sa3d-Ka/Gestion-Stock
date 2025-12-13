@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../components/common/PageTitle";
 import { useSuppliers } from "../context/SupplierContext";
 import { useProducts } from "../context/ProductContext";
 import { useCategories } from "../context/CategoryContext";
@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../components/MyTable";
+} from "../components/common/MyTable";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");

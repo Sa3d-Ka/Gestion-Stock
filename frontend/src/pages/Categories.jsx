@@ -1,6 +1,6 @@
 import React from "react";
-import PageTitle from "../components/PageTitle";
-import CategorieCard from "../components/CategorieCard";
+import PageTitle from "../components/common/PageTitle";
+import CategoryCard from "../components/Category/CategoryCard";
 import { Plus } from "lucide-react";
 import { useCategories } from "../context/CategoryContext";
 import { useProducts } from "../context/ProductContext";
@@ -24,7 +24,7 @@ const Categories = () => {
 
       <div className="grid grid-cols-4 gap-3 mt-7">
         {categories.map((categorie) => (
-          <CategorieCard key={categorie.id} categorieInfo={categorie} products={products} />
+          <CategoryCard key={categorie.id} categorieInfo={categorie} products={products} />
         ))}
       </div>
     </div>

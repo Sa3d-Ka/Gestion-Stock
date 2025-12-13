@@ -4,7 +4,7 @@ const Card = ({ info }) => {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-100 transition-all hover:shadow-md">
       <div className="flex items-start justify-between">
-        <div className="space-y-3">
+        <div className="space-y-3 overflow-x-scroll [scrollbar-width:none] [-ms-overflow-style:none]">
           <p className="text-sm font-medium text-slate-500">{info.title}</p>
           <p className="text-3xl font-bold text-slate-900">{info.value}</p>
         </div>

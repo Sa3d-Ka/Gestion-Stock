@@ -1,24 +1,24 @@
 import React from "react";
 import {
   AlertTriangle,
+  Boxes,
   BoxIcon,
   DollarSign,
   FolderTree,
   TriangleAlert,
 } from "lucide-react";
-import Card from "../components/Card";
-import PageTitle from "../components/PageTitle";
+import Card from "../components/Dashboard/Card";
+import PageTitle from "../components/common/PageTitle";
 import { useProducts } from "../context/ProductContext";
 import { useCategories } from "../context/CategoryContext";
-import AlertLowStockCard from "../components/AlertLowStockCard";
+import AlertLowStockCard from "../components/Dashboard/AlertLowStockCard";
+import LowStockAlertsSection from "../components/Dashboard/LowStockAlertsSection";
+import RecentProductCard from "../components/Dashboard/RecentProductCard";
+import RecentProductsSection from "../components/Dashboard/RecentProductsSection";
 
-const Home = () => {
+const Dashboard = () => {
   const { products } = useProducts();
   const { categories } = useCategories();
-
-  const countLowStockItems = products.filter(
-    (product) => product.stock < product.minStock
-  ).length;
 
   const lowStockItems = products.filter(
     (product) => product.stock < product.minStock
@@ -33,7 +33,7 @@ const Home = () => {
     },
     {
       title: "Low Stock Items",
-      value: countLowStockItems.toString(),
+      value: lowStockItems.length.toString(),
       icon: TriangleAlert,
       color: "bg-red-500",
     },
@@ -54,39 +54,29 @@ const Home = () => {
   ];
   return (
     <div>
+      {/* Page Title */}
       <PageTitle
         title="Dashboard"
         description="Overview of your stock management system"
       />
+
+      {/* Info Cards Section */}
       <div className="grid grid-cols-4 gap-4 mt-6">
         {infoCards.map((info, index) => (
           <Card key={index} info={info} />
         ))}
       </div>
-      <div className="mt-6 shadow p-5 rounded-xl bg-white space-y-5">
-        <h4 className="font-semibold text-lg flex gap-3 items-center">
-          <AlertTriangle className="text-red-600" /> Low Stock Alerts
-        </h4>
-        <div className="space-y-2">
-          {countLowStockItems === 0 ? (
-            <p className="text-gray-500 mt-4">
-              All products are sufficiently stocked.
-            </p>
-          ) : (
-            lowStockItems.map((product) => (
-              <AlertLowStockCard
-                key={product.id}
-                product={product}
-                categorieName={
-                  categories.find((cat) => cat.id === product.categoryId)?.name
-                }
-              />
-            ))
-          )}
-        </div>
-      </div>
+
+      {/* Low Stock Alerts Section */}
+      <LowStockAlertsSection
+        lowStockItems={lowStockItems.slice(0, 4)}
+        categories={categories}
+      />
+
+      {/* Recent Products Section */}
+      <RecentProductsSection products={products.slice(-5)} categories={categories} />
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;
