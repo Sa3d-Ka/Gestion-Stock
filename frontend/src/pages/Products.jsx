@@ -60,9 +60,25 @@ const Products = () => {
           </button>
         </div>
 
-        <div>
+        <div className="grid grid-cols-12 gap-4 mb-4">
           {/* Filters - Placeholder for future filter components */}
-          
+          <input type="text" className="col-span-6 border-2 border-gray-300 rounded-md px-4 py-2 outline-0 focus:border-blue-500" placeholder="Search products..." />
+          <select className="col-span-3 border border-gray-300 rounded-md px-4 py-2 outline-0 focus:border-blue-500">
+            <option value="">All Categories</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+          <select className="col-span-3 border border-gray-300 rounded-md px-4 py-2 outline-0 focus:border-blue-500">
+            <option value="">All Suppliers</option>
+            {suppliers.map((supplier) => (
+              <option key={supplier.id} value={supplier.id}>
+                {supplier.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Table */}
