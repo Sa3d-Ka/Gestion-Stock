@@ -3,7 +3,7 @@ import PageTitle from "../components/common/PageTitle";
 import { useSuppliers } from "../context/SupplierContext";
 import { useProducts } from "../context/ProductContext";
 import { useCategories } from "../context/CategoryContext";
-import { Pencil, Plus, Trash, Search } from "lucide-react";
+import { Pencil, Plus, Trash, Search, Box } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "../components/common/MyTable";
+import assets from "../assets/assets";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -85,7 +86,12 @@ const Products = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button onClick={resetFilters} className="px-4 py-1.5 outline-0 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer">Reset</button>
+            <button
+              onClick={resetFilters}
+              className="px-4 py-1.5 outline-0 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+            >
+              Reset
+            </button>
             <button className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg">
               <Plus size={20} /> Add Product
             </button>
@@ -166,7 +172,20 @@ const Products = () => {
               filteredProducts.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell className="font-medium text-gray-800">
-                    {product.name}
+                    <div className="flex items-center gap-3">
+                      {product.imageUrl ? (
+                        <img
+                          src={assets[product.imageUrl]}  
+                          alt={product.name}
+                          className="h-15 w-15 rounded-lg object-cover"
+                        />
+                      ) : (
+                        <div className="h-10 w-10 rounded-lg bg-blue-200 flex items-center justify-center">
+                          <Box size={23} className="text-blue-600" />
+                        </div>
+                      )}
+                      {product.name}
+                    </div>
                   </TableCell>
 
                   <TableCell>
