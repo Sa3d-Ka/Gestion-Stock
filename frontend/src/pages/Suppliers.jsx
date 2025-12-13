@@ -1,16 +1,34 @@
+// pages/Suppliers.jsx
 import React from "react";
 import PageTitle from "../components/PageTitle";
 import { useSuppliers } from "../context/SupplierContext";
 import { useProducts } from "../context/ProductContext";
+import { Pencil, Plus, Trash } from "lucide-react";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableEmpty
+} from "../components/MyTable";
 
 const Suppliers = () => {
-  const { suppliers } = useSuppliers();
+  const { suppliers, deleteSupplier } = useSuppliers();
   const { products } = useProducts();
 
   const productCount = (supplierId) => {
-    return products.filter((product) => product.supplierId === supplierId)
-      .length;
+    return products.filter((product) => product.supplierId === supplierId).length;
   };
+
+  const columns = [
+    { key: "name", label: "Name" },
+    { key: "contact", label: "Contact" },
+    { key: "address", label: "Address" },
+    { key: "products", label: "Products" },
+    { key: "actions", label: "Actions" },
+  ];
 
   return (
     <div>
@@ -19,7 +37,7 @@ const Suppliers = () => {
         description="Manage your product suppliers"
       />
 
-      <div className="p-6 border border-gray-200 shadow-lg rounded-2xl mt-6 bg-white space-y-4">
+      <div className="p-6 border border-gray-200 shadow-lg rounded-2xl mt-6 bg-white space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -29,70 +47,72 @@ const Suppliers = () => {
             </p>
           </div>
 
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-xl text-sm shadow hover:bg-blue-700 transition">
-            + Add Supplier
+          <button className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg">
+            <Plus size={20} /> Add Supplier
           </button>
         </div>
 
         {/* Table */}
-        <div className="rounded-xl border border-gray-200 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              {/* Table Head */}
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    Contact
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    Address
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    Products
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-
-              {/* Table Body */}
-              <tbody className="bg-white divide-y divide-gray-200">
-                {suppliers.map((supplier) => (
-                  <tr key={supplier.id} className="hover:bg-gray-50 transition">
-                    <td className="px-6 py-4 font-medium text-gray-800">
-                      {supplier.name}
-                    </td>
-
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col text-gray-500 text-sm">
-                        <p>{supplier.email}</p>
-                        <p>{supplier.phone}</p>
-                      </div>
-                    </td>
-
-                    <td className="px-6 py-4 text-gray-700">
-                      {supplier.address}
-                    </td>
-
-                    <td className="px-6 py-4 font-semibold text-gray-800">
-                      {productCount(supplier.id)}
-                    </td>
-
-                    <td className="px-6 py-4">
-                      <button className="text-blue-600 hover:text-blue-800 text-sm font-medium transition hover:underline">
-                        Edit
+        <Table>
+          <TableHeader>
+            {columns.map((column) => (
+              <TableHead key={column.key}>
+                {column.label}
+              </TableHead>
+            ))}
+          </TableHeader>
+          
+          <TableBody>
+            {suppliers.length === 0 ? (
+              <TableEmpty 
+                message="No suppliers available. Add your first supplier to get started."
+                colSpan={columns.length}
+              />
+            ) : (
+              suppliers.map((supplier) => (
+                <TableRow key={supplier.id}>
+                  <TableCell className="font-medium text-gray-800">
+                    {supplier.name}
+                  </TableCell>
+                  
+                  <TableCell>
+                    <div className="flex flex-col text-gray-500 text-sm">
+                      <p>{supplier.email}</p>
+                      <p>{supplier.phone}</p>
+                    </div>
+                  </TableCell>
+                  
+                  <TableCell className="text-gray-700">
+                    {supplier.address}
+                  </TableCell>
+                  
+                  <TableCell>
+                    <span className="text-xs font-medium px-2 py-1 bg-gray-100 rounded-md">
+                      {productCount(supplier.id)} product(s)
+                    </span>
+                  </TableCell>
+                  
+                  <TableCell>
+                    <div className="flex gap-1">
+                      <button 
+                        onClick={() => console.log(`Edit supplier ${supplier.id}`)}
+                        className="text-sky-600 p-2 rounded-md hover:bg-gray-100 transition duration-200 cursor-pointer"
+                      >
+                        <Pencil size={18} />
                       </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                      <button 
+                        onClick={() => deleteSupplier(supplier.id)}
+                        className="text-red-600 p-2 rounded-md hover:bg-gray-100 transition duration-200 cursor-pointer"
+                      >
+                        <Trash size={18} />
+                      </button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const Categories = () => {
           description="Manage your product categories here"
         />
 
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+        <button className="flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer shadow-lg">
           <Plus /> Add Category
         </button>
       </div>

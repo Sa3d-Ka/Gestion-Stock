@@ -2,6 +2,7 @@ import React from "react";
 import {
   AlertTriangle,
   BoxIcon,
+  DollarSign,
   FolderTree,
   TriangleAlert,
 } from "lucide-react";
@@ -40,6 +41,14 @@ const Home = () => {
       title: "Categories",
       value: categories.length.toString(),
       icon: FolderTree,
+      color: "bg-sky-500",
+    },
+    {
+      title: "Total Value",
+      value: `$${products
+        .reduce((total, product) => total + product.price * product.stock, 0)
+        .toFixed(2)}`,
+      icon: DollarSign,
       color: "bg-emerald-500",
     },
   ];
@@ -49,7 +58,7 @@ const Home = () => {
         title="Dashboard"
         description="Overview of your stock management system"
       />
-      <div className="grid grid-cols-3 gap-4 mt-6">
+      <div className="grid grid-cols-4 gap-4 mt-6">
         {infoCards.map((info, index) => (
           <Card key={index} info={info} />
         ))}
