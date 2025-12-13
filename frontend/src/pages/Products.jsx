@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import PageTitle from "../components/PageTitle";
 import { useSuppliers } from "../context/SupplierContext";
 import { useProducts } from "../context/ProductContext";
 import { useCategories } from "../context/CategoryContext";
-import { Pencil, Plus, Trash } from "lucide-react";
+import { Pencil, Plus, Trash, Search } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -15,16 +15,37 @@ import {
 } from "../components/MyTable";
 
 const Products = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSupplier, setSelectedSupplier] = useState("");
+
   const { suppliers } = useSuppliers();
-  const { products, deleteProduct, addProduct } = useProducts();
+  const { products, deleteProduct } = useProducts();
   const { categories } = useCategories();
+
+  // Filter products
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.sku.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesCategory = selectedCategory
+      ? product.categoryId === selectedCategory
+      : true;
+
+    const matchesSupplier = selectedSupplier
+      ? product.supplierId === selectedSupplier
+      : true;
+
+    return matchesSearch && matchesCategory && matchesSupplier;
+  });
 
   const supplierName = (supplierId) => {
     const supplier = suppliers.find((sup) => sup.id === supplierId);
     return supplier ? supplier.name : "Unknown Supplier";
   };
 
-  const categoryNamre = (categoryId) => {
+  const categoryName = (categoryId) => {
     const category = categories.find((cat) => cat.id === categoryId);
     return category ? category.name : "Uncategorized";
   };
@@ -32,12 +53,20 @@ const Products = () => {
   const columns = [
     { key: "name", label: "Name" },
     { key: "sku", label: "SKU" },
-    { key: "category", label: "Category" },
     { key: "supplier", label: "Supplier" },
+    { key: "category", label: "Category" },
     { key: "quantity", label: "Quantity" },
     { key: "price", label: "Price" },
     { key: "actions", label: "Actions" },
   ];
+
+  // Reset all filters
+  const resetFilters = () => {
+    setSearchTerm("");
+    setSelectedCategory("");
+    setSelectedSupplier("");
+  };
+
   return (
     <div>
       <PageTitle
@@ -51,34 +80,68 @@ const Products = () => {
           <div>
             <p className="font-semibold text-lg text-gray-800">All Products</p>
             <p className="text-gray-500 text-sm">
-              {products.length} products in total
+              Showing {filteredProducts.length} of {products.length} products
             </p>
           </div>
 
-          <button className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg">
-            <Plus size={20} /> Add Product
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={resetFilters} className="px-4 py-1.5 outline-0 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer">Reset</button>
+            <button className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg">
+              <Plus size={20} /> Add Product
+            </button>
+          </div>
         </div>
 
+        {/* Filters Section */}
         <div className="grid grid-cols-12 gap-4 mb-4">
-          {/* Filters - Placeholder for future filter components */}
-          <input type="text" className="col-span-6 border-2 border-gray-300 rounded-md px-4 py-2 outline-0 focus:border-blue-500" placeholder="Search products..." />
-          <select className="col-span-3 border border-gray-300 rounded-md px-4 py-2 outline-0 focus:border-blue-500">
-            <option value="">All Categories</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-          <select className="col-span-3 border border-gray-300 rounded-md px-4 py-2 outline-0 focus:border-blue-500">
-            <option value="">All Suppliers</option>
-            {suppliers.map((supplier) => (
-              <option key={supplier.id} value={supplier.id}>
-                {supplier.name}
-              </option>
-            ))}
-          </select>
+          {/* Search Input - 6 columns */}
+          <div className="col-span-12 md:col-span-6">
+            <div className="relative">
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+              />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by name or SKU..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Category Filter - 3 columns */}
+          <div className="col-span-12 sm:col-span-6 md:col-span-3">
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">All Categories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Supplier Filter - 3 columns */}
+          <div className="col-span-12 sm:col-span-6 md:col-span-3">
+            <select
+              value={selectedSupplier}
+              onChange={(e) => setSelectedSupplier(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">All Suppliers</option>
+              {suppliers.map((supplier) => (
+                <option key={supplier.id} value={supplier.id}>
+                  {supplier.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Table */}
@@ -90,45 +153,57 @@ const Products = () => {
           </TableHeader>
 
           <TableBody>
-            {products.length === 0 ? (
+            {filteredProducts.length === 0 ? (
               <TableEmpty
-                message="No products available. Add your first product to get started."
+                message={
+                  products.length === 0
+                    ? "No products available. Add your first product to get started."
+                    : "No products match your filters. Try adjusting your search criteria."
+                }
                 colSpan={columns.length}
               />
             ) : (
-              products.map((product) => (
+              filteredProducts.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell className="font-medium text-gray-800">
                     {product.name}
                   </TableCell>
 
-                  <TableCell>{product.sku}</TableCell>
+                  <TableCell>
+                    <span className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">
+                      {product.sku}
+                    </span>
+                  </TableCell>
 
                   <TableCell className="text-gray-700">
                     {supplierName(product.supplierId)}
                   </TableCell>
 
                   <TableCell>
-                    <span className="text-xs font-medium px-2 py-1 bg-gray-100 rounded-md">
-                      {categoryNamre(product.categoryId)}
+                    <span className="text-xs font-medium px-2 py-1 bg-blue-50 text-blue-700 rounded-md">
+                      {categoryName(product.categoryId)}
                     </span>
                   </TableCell>
 
                   <TableCell>
                     {product.stock === 0 ? (
-                      <span className="text-sm font-medium px-2 py-1 bg-red-100 text-red-700 rounded-md">
+                      <span className="text-xs font-medium px-2 py-1 bg-red-100 text-red-700 rounded-md">
                         Out of Stock
                       </span>
-                    ) : product.stock < product.minStock ? (
-                      <span className="text-sm font-medium px-2 py-1 bg-yellow-100 text-yellow-700 rounded-md">
+                    ) : product.stock < 10 ? (
+                      <span className="text-xs font-medium px-2 py-1 bg-yellow-100 text-yellow-700 rounded-md">
                         {product.stock} (Low)
                       </span>
                     ) : (
-                      product.stock
+                      <span className="text-xs font-medium px-2 py-1 bg-green-100 text-green-700 rounded-md">
+                        {product.stock}
+                      </span>
                     )}
                   </TableCell>
 
-                  <TableCell>${product.price.toFixed(2)}</TableCell>
+                  <TableCell className="font-medium">
+                    ${product.price.toFixed(2)}
+                  </TableCell>
 
                   <TableCell>
                     <div className="flex gap-1">
