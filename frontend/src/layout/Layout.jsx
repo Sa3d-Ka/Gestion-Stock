@@ -3,15 +3,17 @@ import Sidebar from "../components/Sidebar";
 
 const Layout = () => {
   return (
-    <main className="min-h-screen flex bg-gray-100">
-      <aside className="w-64 bg-white shadow-md p-4">
+    <div className="min-h-screen flex bg-gray-50">
+      {/* Sidebar - Fixed width */}
+      <aside className="w-64 bg-white shadow-lg p-4 sticky top-0 h-screen overflow-y-auto">
         <Sidebar />
       </aside>
 
-      <section className="flex-1 p-6">
+      {/* Main Content - Flexible */}
+      <main className="flex-1 p-6 overflow-y-auto">
         <Outlet />
-      </section>
-    </main>
+      </main>
+    </div>
   );
 };
 
