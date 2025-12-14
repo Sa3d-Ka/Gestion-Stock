@@ -14,14 +14,16 @@ import {
   TableRow,
 } from "../components/common/MyTable";
 import assets from "../assets/assets";
+import AddProductDialog from "../components/Products/AddProductDialog"; // Import the dialog
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSupplier, setSelectedSupplier] = useState("");
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false); // Dialog state
 
   const { suppliers } = useSuppliers();
-  const { products, deleteProduct } = useProducts();
+  const { products, deleteProduct, addProduct } = useProducts(); // Make sure addProduct exists
   const { categories } = useCategories();
 
   // Filter products
@@ -51,6 +53,22 @@ const Products = () => {
     return category ? category.name : "Uncategorized";
   };
 
+  // Handle adding a new product
+  const handleAddProduct = (productData) => {
+    // Generate a unique ID for the new product
+    const newProduct = {
+      ...productData,
+      id: Date.now().toString(), // Simple unique ID
+      // Convert string values to appropriate types
+      price: parseFloat(productData.price) || 0,
+      cost: parseFloat(productData.cost) || 0,
+      stock: parseInt(productData.stock) || 0,
+      minStock: parseInt(productData.minStock) || 0,
+    };
+    
+    addProduct(newProduct);
+  };
+
   const columns = [
     { key: "name", label: "Name" },
     { key: "sku", label: "SKU" },
@@ -75,6 +93,13 @@ const Products = () => {
         description="Manage your inventory products"
       />
 
+      {/* Add Product Dialog */}
+      <AddProductDialog
+        isOpen={isAddDialogOpen}
+        onClose={() => setIsAddDialogOpen(false)}
+        onSubmit={handleAddProduct}
+      />
+
       <div className="p-6 border border-gray-200 shadow-lg rounded-2xl mt-6 bg-white space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -92,7 +117,11 @@ const Products = () => {
             >
               Reset
             </button>
-            <button className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg">
+            {/* Update Add Product button to open dialog */}
+            <button 
+              onClick={() => setIsAddDialogOpen(true)}
+              className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg"
+            >
               <Plus size={20} /> Add Product
             </button>
           </div>
@@ -177,11 +206,11 @@ const Products = () => {
                         <img
                           src={assets[product.imageUrl]}  
                           alt={product.name}
-                          className="h-15 w-15 rounded-lg object-cover"
+                          className="h-10 w-10 rounded-lg object-cover"
                         />
                       ) : (
                         <div className="h-10 w-10 rounded-lg bg-blue-200 flex items-center justify-center">
-                          <Box size={23} className="text-blue-600" />
+                          <Box size={20} className="text-blue-600" />
                         </div>
                       )}
                       {product.name}

@@ -101,7 +101,7 @@ const Suppliers = () => {
                         <Pencil size={18} />
                       </button>
                       <button 
-                        onClick={() => deleteSupplier(supplier.id)}
+                        onClick={() => confirm("Are you sure you want to delete this supplier?") && deleteSupplier(supplier.id)}
                         className="text-red-600 p-2 rounded-md hover:bg-gray-100 transition duration-200 cursor-pointer"
                       >
                         <Trash size={18} />
