@@ -56,16 +56,21 @@ const Products = () => {
   // Handle adding a new product
   const handleAddProduct = (productData) => {
     // Generate a unique ID for the new product
+    const newId =
+      products?.length > 0
+        ? (Math.max(...products.map((p) => parseInt(p.id))) + 1).toString()
+        : "1";
+
     const newProduct = {
       ...productData,
-      id: Date.now().toString(), // Simple unique ID
+      id: newId, // Use the generated unique ID
       // Convert string values to appropriate types
       price: parseFloat(productData.price) || 0,
       cost: parseFloat(productData.cost) || 0,
       stock: parseInt(productData.stock) || 0,
       minStock: parseInt(productData.minStock) || 0,
     };
-    
+
     addProduct(newProduct);
   };
 
@@ -118,7 +123,7 @@ const Products = () => {
               Reset
             </button>
             {/* Update Add Product button to open dialog */}
-            <button 
+            <button
               onClick={() => setIsAddDialogOpen(true)}
               className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg"
             >
@@ -204,7 +209,7 @@ const Products = () => {
                     <div className="flex items-center gap-3">
                       {product.imageUrl ? (
                         <img
-                          src={assets[product.imageUrl]}  
+                          src={assets[product.imageUrl]}
                           alt={product.name}
                           className="h-10 w-10 rounded-lg object-cover"
                         />

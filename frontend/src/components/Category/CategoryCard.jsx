@@ -1,7 +1,7 @@
 import React from "react";
 import { BoxIcon, FolderTree, Pencil, Trash } from "lucide-react";
 
-const CategoryCard = ({ categorieInfo, products }) => {
+const CategoryCard = ({ categorieInfo, products, onDelete }) => {
 
   const productCount = products.filter(
     (product) => product.categoryId === categorieInfo.id
@@ -61,7 +61,9 @@ const CategoryCard = ({ categorieInfo, products }) => {
           <button className="text-gray-400 p-2 rounded-md hover:bg-gray-100 hover:text-sky-600 transition duration-200 cursor-pointer">
             <Pencil size={18} />
           </button>
-          <button className="text-gray-400 p-2 rounded-md hover:bg-gray-100 hover:text-red-600 transition duration-200 cursor-pointer">
+          <button 
+          onClick={() => onDelete(categorieInfo.id)}
+          className="text-gray-400 p-2 rounded-md hover:bg-gray-100 hover:text-red-600 transition duration-200 cursor-pointer">
             <Trash size={18} />
           </button>
         </div>
