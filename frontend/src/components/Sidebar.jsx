@@ -20,7 +20,7 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
             <Package className="text-white" size={24} />
           </div>
           <div>
@@ -43,7 +43,7 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
                     isActive
-                      ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md"
+                      ? "bg-linear-to-r from-blue-600 to-blue-700 text-white shadow-md"
                       : "text-gray-700 hover:bg-gray-50"
                   }`
                 }
@@ -61,9 +61,9 @@ const Sidebar = () => {
       {/* Bottom Section */}
       <div className="pt-6 border-t border-gray-200 space-y-1">
         {/* User Profile */}
-        <div className="mt-4 p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+        <div className="mt-4 p-3 bg-linear-to-r from-gray-50 to-gray-100 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold">
+            <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold">
               JD
             </div>
             <div className="flex-1 min-w-0">

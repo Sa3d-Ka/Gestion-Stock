@@ -125,7 +125,7 @@ const Products = () => {
             {/* Update Add Product button to open dialog */}
             <button
               onClick={() => setIsAddDialogOpen(true)}
-              className="px-4 py-2 flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg"
+              className="px-4 py-2 flex items-center gap-2 bg-linear-to-br from-blue-600 to-blue-700 text-sm text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 cursor-pointer shadow-lg"
             >
               <Plus size={20} /> Add Product
             </button>

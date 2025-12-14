@@ -42,7 +42,7 @@ const Categories = () => {
 
         <button
           onClick={() => setIsAddDialogOpen(true)}
-          className="flex items-center gap-2 bg-gradient-to-br from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer shadow-lg"
+          className="flex items-center gap-2 bg-linear-to-br from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer shadow-lg"
         >
           <Plus /> Add Category
         </button>
